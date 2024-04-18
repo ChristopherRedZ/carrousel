@@ -25,7 +25,7 @@ function enqueue_style_script(){
 }
 
 
-add_action('wp_enqueue_script','enqueue_style_script');
+add_action('wp_enqueue_scripts','enqueue_style_script');
 
 
 
