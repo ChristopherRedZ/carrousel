@@ -23,7 +23,7 @@ function enqueue_style_script(){
                     $version_js,
                     true);
 }
-
+//faut ajouter wp_head() et wp_footer()
 
 add_action('wp_enqueue_scripts','enqueue_style_script');
 
@@ -34,11 +34,13 @@ add_action('wp_enqueue_scripts','enqueue_style_script');
     
    $html = '<button class="bouton__ouvrir">Ouvrir Carrousel</button>
    <div class="carrousel">
-    <a href="" class="carrousel__x">X</a>
+    <button href="" class="carrousel__x">X</button>
     <figure class="carrousel__figure"></figure>
     <form action="" class="carrousel__form"></form>
    </div>
    ';
    return $html;
 }
+//[carrousel] juste apres la galerie dans notre article ou page
+//quand la fonction the_content() rencontrera [carrousel] c'est a ce moment que le carroussel sera initialiser
 add_shortcode('carrousel' , 'genere_html');
