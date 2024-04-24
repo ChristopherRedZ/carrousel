@@ -6,7 +6,8 @@
     console.log("bouton = " + bouton.tagName)
     let carrousel__x = document.querySelector('.carrousel__x')
     console.log("carrousel__x " + carrousel__x.tagName)
-
+    let galerie = document.querySelector('.galerie')
+    console.log(galerie)
 
     let carrousel__figure = document.querySelector('.carrousel__figure')
     //create dynamique dune image du carrousel
@@ -14,12 +15,11 @@
 
 
     let galerie__img = galerie.querySelectorAll('img')
-
+    // console.log(galerie)
     console.log(galerie__img)
 
     let index = 0
 
-    console.log(galerie__img)
 
     for (const elm of galerie__img){
 
@@ -47,7 +47,6 @@
 
         carrousel__figure.appendChild(carrousel__img)
 
-        console.log(carrousel__figure)
     }
 /**
  * creation d'un radio bouton du carrousel
