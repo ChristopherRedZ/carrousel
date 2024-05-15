@@ -45,6 +45,23 @@
 
 }
 
+.next-button {
+    z-index: 1;
+    display: flex;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+  }
+.previous-button {
+    z-index: 1;
+    display: flex;
+    position: absolute;
+    margin-left: 110px;
+    cursor: pointer;
+    top: 0;
+  }
+  
+
 .bouton__ouvrir {
     width: 200px;
 }

@@ -1,92 +1,53 @@
 (function (){
-    console.log("C'est du javascript ici")
-    let carrousel = document.querySelector('.carrousel')
-    console.log("conteneur carrousel = " + carrousel.tagName)
-    let bouton = document.querySelector('.bouton__ouvrir')
-    console.log("bouton = " + bouton.tagName)
-    let carrousel__x = document.querySelector('.carrousel__x')
-    console.log("carrousel__x " + carrousel__x.tagName)
-    let galerie = document.querySelector('.galerie')
-    console.log(galerie)
+    document.addEventListener('DOMContentLoaded', function() {
+        let carrousel = document.querySelector('.carrousel');
+        let bouton = document.querySelector('.bouton__ouvrir');
+        let carrousel__x = document.querySelector('.carrousel__x');
+        let galerie__img = document.querySelectorAll('.galerie img');
+        let carrousel__figure = document.createElement('div');
+        carrousel__figure.classList.add('carrousel__figure');
+        carrousel.appendChild(carrousel__figure);
+        
+        let carrousel__imgs = [];
+        let index = 0;
 
-    let carrousel__figure = document.querySelector('.carrousel__figure')
-    //create dynamique dune image du carrousel
-    
+        galerie__img.forEach((elm, idx) => {
+            let carrousel__img = document.createElement('img');
+            carrousel__img.src = elm.src;
+            carrousel__img.classList.add('carrousel__img');
+            carrousel__img.style.opacity = idx === 0 ? 1 : 0; // Rend la premiere image visible
+            carrousel__figure.appendChild(carrousel__img);
+            carrousel__imgs.push(carrousel__img);
+        });
 
+        let nextButton = document.createElement('button');
+        nextButton.textContent = '>>>';
+        nextButton.classList.add('next-button');
+        carrousel.appendChild(nextButton);
 
-    let galerie__img = galerie.querySelectorAll('img')
-    // console.log(galerie)
-    console.log(galerie__img)
+        let previousButton = document.createElement('button');
+        previousButton.textContent = '<<<';
+        previousButton.classList.add('previous-button');
+        carrousel.appendChild(previousButton);
 
-    let index = 0
+        nextButton.addEventListener('click', function() {
+            carrousel__imgs[index].style.opacity = 0;
+            index = (index + 1) % carrousel__imgs.length;
+            carrousel__imgs[index].style.opacity = 1;
+        });
 
+        previousButton.addEventListener('click', function() {
+            carrousel__imgs[index].style.opacity = 0;
+            index = (index - 1 + carrousel__imgs.length) % carrousel__imgs.length;
+            carrousel__imgs[index].style.opacity = 1;
+        });
 
-    for (const elm of galerie__img){
+        bouton.addEventListener('click', function() {
+            carrousel.classList.add('carrousel--ouvrir');
+        });
 
-        creer_image_carrousel(index,elm)
-        creer_radio_carrousel(index)
-
-        index = index + 1
-    }
-/**
- * creer l<image du carrousel a partir de la galerie 
- * @param {*} index le numero de l'image
- */
-    function creer_image_carrousel(index,elm){
-        console.log(elm.src)
-
-        console.log(carrousel__figure)
-
-        let carrousel__img = document.createElement('img')
-
-        carrousel__img.src = elm.src
-
-        carrousel__img.classList.add('carrousel__img')
-
-        carrousel__img.dataset.index = index
-
-        carrousel__figure.appendChild(carrousel__img)
-
-    }
-/**
- * creation d'un radio bouton du carrousel
- * @param {*} index le numero de la radio
- */
-    function creer_radio_carrousel(index){
-        let carrousel__radio = document.createElement('input')
-        //class
-
-        //index
-
-        //type
-
-        //name
-
-        //ajouter dans carrousel_form (append ?)
-
-        //ajouter un ecouteur qui permettra de changer l'opacité de l'image index
-
-        // carrousel__img.children[index].style.opacity = 1
-    }
-
-    // console.log("premiere image = " + galerie__img.innerHTML)
-
-    // carrousel__img.src = galerie__img.src
-
-    // console.log("premiere image carrousel = " + carrousel__img.src)
-
-    // carrousel__figure.appendChild(carrousel__img)
-
-
-   
-   
-    bouton.addEventListener('mousedown' , function(){
-        carrousel.classList.add('carrousel--ouvrir')
-        console.log(carrousel.classList)
-    })
-
-    carrousel__x.addEventListener('mousedown',function(){
-        carrousel.classList.remove('carrousel--ouvrir')
-        console.log(carrousel.classList)
-    })
-})()
+        carrousel__x.addEventListener('click', function() {
+            carrousel.classList.remove('carrousel--ouvrir');
+        });
+    });
+})();
