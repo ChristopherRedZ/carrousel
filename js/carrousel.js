@@ -15,11 +15,17 @@
             let carrousel__img = document.createElement('img');
             carrousel__img.src = elm.src;
             carrousel__img.classList.add('carrousel__img');
-            carrousel__img.style.opacity = idx === 0 ? 1 : 0; // Rend la premiere image visible
+            carrousel__img.style.opacity = 0; // Rend tout les images cachées au debut
             carrousel__figure.appendChild(carrousel__img);
             carrousel__imgs.push(carrousel__img);
-        });
 
+            elm.addEventListener('click', function() {
+                index = idx; // Applique l'index de l'image cliquée
+                updateOpacity(); // Met a jour l''opacité de l'image montrée
+                carrousel.classList.add('carrousel--ouvrir'); // Ouvre le carrousel
+            });
+        });
+        //Création des bouton de changement d'image
         let nextButton = document.createElement('button');
         nextButton.textContent = '>>>';
         nextButton.classList.add('next-button');
@@ -43,11 +49,20 @@
         });
 
         bouton.addEventListener('click', function() {
+            index = 0; // Applique l'index de la premiere image
+            updateOpacity(); // Met a jour l'opacité de la premiere image
             carrousel.classList.add('carrousel--ouvrir');
         });
 
         carrousel__x.addEventListener('click', function() {
             carrousel.classList.remove('carrousel--ouvrir');
         });
+
+        function updateOpacity() {
+            carrousel__imgs.forEach(function(img) {
+                img.style.opacity = 0;
+            });
+            carrousel__imgs[index].style.opacity = 1;
+        }
     });
 })();
