@@ -1,4 +1,4 @@
-TP 2 Carrousel
+TP 2 Carrousel (Le carrousel est dans Costa Rica)
 
 ~Carrousel d’images
 Le carrousel permet d’afficher les images d’une galerie. Voici  les fonctionnalités de Navigation :
