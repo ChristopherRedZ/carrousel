@@ -40,6 +40,12 @@
   top: 0;
   left: 0;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.carrousel__img:first-child {
+  opacity: 1;
 }
 
 .carrousel--ouvrir {
